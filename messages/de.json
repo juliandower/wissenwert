@@ -1,0 +1,62 @@
+{
+  "home": {
+    "title": "AI Pointed Quiz",
+    "subtitle": "Testen Sie Ihr Wissen mit KI-generierten Quizzen",
+    "placeholder": "Thema eingeben...",
+    "quizTopic": "Quiz Thema",
+    "topicPlaceholder": "Geben Sie ein Thema ein (z.B. 'Weltgeschichte', 'JavaScript Programmierung', 'Raumfahrt')",
+    "generateButton": "Quiz erstellen",
+    "generatingQuiz": "Quiz wird erstellt...",
+    "enterTopic": "Bitte geben Sie ein Thema ein",
+    "topicTooLong": "Thema darf maximal 200 Zeichen lang sein",
+    "exampleTopics": "Versuchen Sie Themen wie: \"Weltgeschichte\", \"JavaScript\", \"Weltraum\", etc."
+  },
+  "quiz": {
+    "score": "Punkte",
+    "leverage": "Hebel",
+    "leverageNormal": "1x (normal)",
+    "leveragePowerUps": "Hebel Power-Ups",
+    "remaining": "verbleibend",
+    "chooseMultiplier": "Wählen Sie einen Multiplikator aus, um den Punktwert dieser Frage zu ändern:",
+    "halfX": "½x",
+    "halfXPoints": "+5/-5 Punkte",
+    "saferPlay": "Sicherer Spielzug",
+    "twoX": "2x",
+    "twoXPoints": "+20/-20 Punkte",
+    "risky": "Riskanter Spielzug",
+    "threeX": "3x",
+    "threeXPoints": "+30/-30 Punkte",
+    "highRisk": "Hohes Risiko",
+    "leverageHint": "Leer lassen für normale Punkte (1x) oder wählen Sie ein verfügbares Power-Up",
+    "allUsed": "Alle Power-Ups wurden verwendet",
+    "applied": "Hebel {value}x angewendet",
+    "nextQuestion": "Nächste Frage",
+    "viewResults": "Ergebnisse anzeigen",
+    "explanation": "Erklärung",
+    "noExplanation": "Keine Erklärung verfügbar.",
+    "loadingQuiz": "Quiz wird geladen..."
+  },
+  "results": {
+    "title": "Quiz Ergebnisse",
+    "finalScore": "Endpunktzahl",
+    "scoreProgress": "Kumulativer Punktestand",
+    "questionReview": "Fragenüberprüfung",
+    "playAgain": "Nochmal spielen",
+    "tryDifferentTopic": "Anderes Thema ausprobieren",
+    "correct": "Richtig",
+    "incorrect": "Falsch",
+    "yourAnswer": "Ihre Antwort",
+    "correctAnswer": "Richtige Antwort",
+    "noAnswerSelected": "Keine Antwort ausgewählt",
+    "explanation": "Erklärung",
+    "correctLabel": "Richtig (+)",
+    "incorrectLabel": "Falsch (-)",
+    "halfXLeverage": "½x Hebel",
+    "twoXLeverage": "2x Hebel",
+    "threeXLeverage": "3x Hebel"
+  },
+  "errors": {
+    "failedToGenerate": "Fehler beim Erstellen des Quiz. Bitte versuchen Sie es erneut."
+  }
+}
+

@@ -1,8 +1,10 @@
 "use client";
 
+import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { QuizState } from "@/lib/types";
 import { QuestionReview } from "./QuestionReview";
+import { ScoreWaterfall } from "./ScoreWaterfall";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 
@@ -11,6 +13,7 @@ interface ResultsDisplayProps {
 }
 
 export function ResultsDisplay({ quizState }: ResultsDisplayProps) {
+  const t = useTranslations('results');
   const router = useRouter();
   const score = quizState.score;
   const total = quizState.questions.length;
@@ -32,29 +35,22 @@ export function ResultsDisplay({ quizState }: ResultsDisplayProps) {
 
   return (
     <div className="w-full max-w-4xl mx-auto space-y-6">
-      <Card className="text-center">
-        <CardHeader>
-          <CardTitle className="text-3xl">Quiz Results</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className={getScoreColor()}>
-            <div className="text-6xl font-bold">{score}/{total}</div>
-            <div className="text-2xl mt-2">{percentage}%</div>
-          </div>
-          <p className="text-xl font-semibold text-gray-700">
-            {getScoreMessage()}
-          </p>
-        </CardContent>
-      </Card>
+      <ScoreWaterfall
+        questionPoints={quizState.questionPoints}
+        questionLeverages={quizState.questionLeverages}
+        finalScore={score}
+      />
 
       <div className="space-y-4">
-        <h2 className="text-2xl font-bold text-gray-800">Question Review</h2>
+        <h2 className="text-2xl font-bold text-gray-800">{t('questionReview')}</h2>
         {quizState.questions.map((question, index) => (
           <QuestionReview
             key={question.id}
             question={question}
             userAnswer={quizState.userAnswers[index] ?? -1}
             questionNumber={index + 1}
+            leverageUsed={quizState.questionLeverages[index]}
+            pointsEarned={quizState.questionPoints[index]}
           />
         ))}
       </div>
@@ -62,19 +58,25 @@ export function ResultsDisplay({ quizState }: ResultsDisplayProps) {
       <div className="flex gap-4 pt-4">
         <Button
           size="lg"
-          onClick={() => router.push("/")}
+          onClick={() => {
+            const locale = window.location.pathname.split('/')[1] || 'en';
+            router.push(`/${locale}`);
+          }}
           variant="default"
           className="flex-1"
         >
-          Play Again
+          {t('playAgain')}
         </Button>
         <Button
           size="lg"
-          onClick={() => router.push("/")}
+          onClick={() => {
+            const locale = window.location.pathname.split('/')[1] || 'en';
+            router.push(`/${locale}`);
+          }}
           variant="outline"
           className="flex-1"
         >
-          Try Different Topic
+          {t('tryDifferentTopic')}
         </Button>
       </div>
     </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { AnswerOption } from "./AnswerOption";
 import { Question } from "@/lib/types";
@@ -25,6 +26,7 @@ export function QuizQuestion({
   onSelectAnswer,
   onNext,
 }: QuizQuestionProps) {
+  const t = useTranslations('quiz');
   const currentQuestionNum = questionIndex + 1;
   const correctAnswerIndex = question.correctAnswer;
 
@@ -69,10 +71,10 @@ export function QuizQuestion({
           {isAnswered && (
             <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
               <p className="text-sm font-semibold text-blue-900 mb-1">
-                Explanation:
+                {t('explanation')}
               </p>
               <p className="text-sm text-blue-800">
-                {question.explanation || "No explanation available."}
+                {question.explanation || t('noExplanation')}
               </p>
             </div>
           )}
@@ -84,7 +86,7 @@ export function QuizQuestion({
                 size="lg"
                 className="w-full"
               >
-                {currentQuestionNum === totalQuestions ? "View Results" : "Next Question"}
+                {currentQuestionNum === totalQuestions ? t('viewResults') : t('nextQuestion')}
               </Button>
             </div>
           )}

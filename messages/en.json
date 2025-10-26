@@ -1,0 +1,62 @@
+{
+  "home": {
+    "title": "AI Pointed Quiz",
+    "subtitle": "Test your knowledge with AI-generated quizzes",
+    "placeholder": "Enter a topic...",
+    "quizTopic": "Quiz Topic",
+    "topicPlaceholder": "Enter a topic (e.g., 'World History', 'JavaScript Programming', 'Space Exploration')",
+    "generateButton": "Generate Quiz",
+    "generatingQuiz": "Generating Quiz...",
+    "enterTopic": "Please enter a topic",
+    "topicTooLong": "Topic must be 200 characters or less",
+    "exampleTopics": "Try topics like: \"World History\", \"JavaScript\", \"Space\", etc."
+  },
+  "quiz": {
+    "score": "Score",
+    "leverage": "Leverage",
+    "leverageNormal": "1x (normal)",
+    "leveragePowerUps": "Leverage Power-Ups",
+    "remaining": "remaining",
+    "chooseMultiplier": "Choose a multiplier to change the point value of this question:",
+    "halfX": "½x",
+    "halfXPoints": "+5/-5 points",
+    "saferPlay": "Safer play",
+    "twoX": "2x",
+    "twoXPoints": "+20/-20 points",
+    "risky": "Risky",
+    "threeX": "3x",
+    "threeXPoints": "+30/-30 points",
+    "highRisk": "High risk",
+    "leverageHint": "Leave empty for normal scoring (1x), or select an available power-up",
+    "allUsed": "All power-ups have been used",
+    "applied": "Leverage {value}x applied",
+    "nextQuestion": "Next Question",
+    "viewResults": "View Results",
+    "explanation": "Explanation",
+    "noExplanation": "No explanation available.",
+    "loadingQuiz": "Loading quiz..."
+  },
+  "results": {
+    "title": "Quiz Results",
+    "finalScore": "Final Score",
+    "scoreProgress": "Cumulative score progression",
+    "questionReview": "Question Review",
+    "playAgain": "Play Again",
+    "tryDifferentTopic": "Try Different Topic",
+    "correct": "Correct",
+    "incorrect": "Incorrect",
+    "yourAnswer": "Your Answer",
+    "correctAnswer": "Correct Answer",
+    "noAnswerSelected": "No answer selected",
+    "explanation": "Explanation",
+    "correctLabel": "Correct (+)",
+    "incorrectLabel": "Incorrect (-)",
+    "halfXLeverage": "½x Leverage",
+    "twoXLeverage": "2x Leverage",
+    "threeXLeverage": "3x Leverage"
+  },
+  "errors": {
+    "failedToGenerate": "Failed to generate quiz. Please try again."
+  }
+}
+

@@ -15,19 +15,36 @@ export default function ResultsPage() {
     const topic = localStorage.getItem("quizTopic") || "Unknown Topic";
 
     if (!quizDataStr) {
-      router.push("/");
+      const locale = window.location.pathname.split('/')[1] || 'en';
+      router.push(`/${locale}`);
       return;
     }
 
     const quizData = JSON.parse(quizDataStr);
     const userAnswersStr = localStorage.getItem("userAnswers");
     const scoreStr = localStorage.getItem("score");
+    const leveragesStr = localStorage.getItem("availableLeverages");
+    const questionLeveragesStr = localStorage.getItem("questionLeverages");
+    const questionPointsStr = localStorage.getItem("questionPoints");
 
     // Reconstruct quiz state
     const userAnswers = userAnswersStr
       ? JSON.parse(userAnswersStr)
       : Array(quizData.questions.length).fill(null);
     const score = scoreStr ? parseInt(scoreStr) : 0;
+    const availableLeverages = leveragesStr 
+      ? JSON.parse(leveragesStr)
+      : [
+          { multiplier: 0.5, used: false },
+          { multiplier: 2, used: false },
+          { multiplier: 3, used: false },
+        ];
+    const questionLeverages = questionLeveragesStr
+      ? JSON.parse(questionLeveragesStr)
+      : Array(quizData.questions.length).fill(null);
+    const questionPoints = questionPointsStr
+      ? JSON.parse(questionPointsStr)
+      : Array(quizData.questions.length).fill(0);
 
     const finalState: QuizState = {
       topic,
@@ -36,6 +53,10 @@ export default function ResultsPage() {
       userAnswers,
       score,
       isComplete: true,
+      availableLeverages,
+      currentQuestionLeverage: null,
+      questionLeverages,
+      questionPoints,
     };
 
     setQuizState(finalState);
