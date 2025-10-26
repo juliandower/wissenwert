@@ -1,0 +1,227 @@
+import { AIQuizResponse } from "./types";
+
+export const worldHistoryQuiz: AIQuizResponse = {
+  questions: [
+    {
+      id: "1",
+      question: "In which year did World War I begin?",
+      options: ["1914", "1915", "1916", "1917"],
+      correctAnswer: 0,
+      explanation: "World War I began in 1914 after the assassination of Archduke Franz Ferdinand.",
+    },
+    {
+      id: "2",
+      question: "Which ancient civilization built the Great Pyramid of Giza?",
+      options: ["The Greeks", "The Romans", "The Egyptians", "The Mesopotamians"],
+      correctAnswer: 2,
+      explanation: "The Great Pyramid of Giza was built by ancient Egyptians during the Old Kingdom period.",
+    },
+    {
+      id: "3",
+      question: "Who was the first person to walk on the moon?",
+      options: ["Buzz Aldrin", "Neil Armstrong", "Michael Collins", "John Glenn"],
+      correctAnswer: 1,
+      explanation: "Neil Armstrong was the first person to set foot on the moon in 1969.",
+    },
+    {
+      id: "4",
+      question: "What was the name of the ship that brought the Pilgrims to America?",
+      options: ["The Santa Maria", "The Mayflower", "The Nina", "The Pinta"],
+      correctAnswer: 1,
+      explanation: "The Mayflower brought the Pilgrims to Plymouth in 1620.",
+    },
+    {
+      id: "5",
+      question: "Which empire was ruled by Montezuma II?",
+      options: ["Maya", "Inca", "Aztec", "Olmec"],
+      correctAnswer: 2,
+      explanation: "Montezuma II was the Aztec emperor when Spanish conquistadors arrived in Mexico.",
+    },
+    {
+      id: "6",
+      question: "In which year did the Berlin Wall fall?",
+      options: ["1987", "1988", "1989", "1990"],
+      correctAnswer: 2,
+      explanation: "The Berlin Wall fell in 1989, symbolizing the end of the Cold War division of Germany.",
+    },
+    {
+      id: "7",
+      question: "Which battle marked the turning point of World War II in the Pacific?",
+      options: ["Pearl Harbor", "Midway", "Iwo Jima", "Okinawa"],
+      correctAnswer: 1,
+      explanation: "The Battle of Midway in 1942 crippled Japan's naval power and turned the tide in the Pacific.",
+    },
+    {
+      id: "8",
+      question: "What was the primary purpose of the Silk Road?",
+      options: ["Military conquest", "Cultural exchange", "Trade", "Religious pilgrimage"],
+      correctAnswer: 2,
+      explanation: "The Silk Road was a network of trade routes connecting East and West, primarily for commerce.",
+    },
+    {
+      id: "9",
+      question: "Which dynasty ruled China for the longest period?",
+      options: ["Tang", "Song", "Ming", "Qing"],
+      correctAnswer: 3,
+      explanation: "The Qing Dynasty ruled from 1644 to 1912, making it the longest-lasting imperial dynasty.",
+    },
+    {
+      id: "10",
+      question: "What event triggered the start of World War II in Europe?",
+      options: ["The invasion of France", "The bombing of London", "The invasion of Poland", "The attack on Pearl Harbor"],
+      correctAnswer: 2,
+      explanation: "Germany's invasion of Poland on September 1, 1939, triggered World War II in Europe.",
+    },
+  ],
+};
+
+export const javascriptQuiz: AIQuizResponse = {
+  questions: [
+    {
+      id: "1",
+      question: "What does 'DOM' stand for in JavaScript?",
+      options: ["Document Object Model", "Data Object Management", "Digital Operating Module", "Dynamic Object Manipulation"],
+      correctAnswer: 0,
+      explanation: "DOM stands for Document Object Model, representing the structure of HTML documents.",
+    },
+    {
+      id: "2",
+      question: "Which keyword is used to declare a variable with block scope in ES6?",
+      options: ["var", "let", "const", "Both let and const"],
+      correctAnswer: 3,
+      explanation: "Both 'let' and 'const' provide block scope, while 'var' has function scope.",
+    },
+    {
+      id: "3",
+      question: "What is the output of: typeof null?",
+      options: ["'null'", "'undefined'", "'object'", "'boolean'"],
+      correctAnswer: 2,
+      explanation: "A well-known JavaScript quirk: typeof null returns 'object' due to a bug in the language.",
+    },
+    {
+      id: "4",
+      question: "Which method can be used to merge arrays in JavaScript?",
+      options: [".concat()", ".push()", ".join()", ".slice()"],
+      correctAnswer: 0,
+      explanation: "The .concat() method is used to merge two or more arrays and return a new array.",
+    },
+    {
+      id: "5",
+      question: "What does the 'this' keyword refer to in JavaScript?",
+      options: ["The current file", "The parent function", "The calling object", "The global scope"],
+      correctAnswer: 2,
+      explanation: "The 'this' keyword refers to the object that is executing the current function.",
+    },
+    {
+      id: "6",
+      question: "Which operator returns true if both operands are of different types?",
+      options: ["===", "!==", "==", "!="],
+      correctAnswer: 1,
+      explanation: "The !== operator checks for both value and type inequality.",
+    },
+    {
+      id: "7",
+      question: "What is a closure in JavaScript?",
+      options: ["A function inside another function", "A function that captures variables from outer scope", "A type of loop", "A way to close arrays"],
+      correctAnswer: 1,
+      explanation: "A closure is a function that retains access to variables from its outer (enclosing) scope even after the outer function has returned.",
+    },
+    {
+      id: "8",
+      question: "What does the spread operator (...) do?",
+      options: ["Expands an iterable into individual elements", "Joins strings", "Multiplies numbers", "Creates copies"],
+      correctAnswer: 0,
+      explanation: "The spread operator expands an iterable (like an array) into individual elements.",
+    },
+    {
+      id: "9",
+      question: "Which method creates a new array from a callback function?",
+      options: [".forEach()", ".map()", ".filter()", ".reduce()"],
+      correctAnswer: 1,
+      explanation: "The .map() method creates a new array with the results of calling a function on every element.",
+    },
+    {
+      id: "10",
+      question: "What is the purpose of 'use strict' in JavaScript?",
+      options: ["To enforce type checking", "To enable strict mode error catching", "To speed up code", "To disable async functions"],
+      correctAnswer: 1,
+      explanation: "'use strict' enables strict mode, which helps catch common coding errors and prevents unsafe actions.",
+    },
+  ],
+};
+
+export const spaceQuiz: AIQuizResponse = {
+  questions: [
+    {
+      id: "1",
+      question: "What is the name of the galaxy that contains our solar system?",
+      options: ["Andromeda", "Milky Way", "Triangulum", "Whirlpool"],
+      correctAnswer: 1,
+      explanation: "Our solar system is located in the Milky Way galaxy, a barred spiral galaxy.",
+    },
+    {
+      id: "2",
+      question: "Which planet is known as the 'Red Planet'?",
+      options: ["Venus", "Mars", "Jupiter", "Saturn"],
+      correctAnswer: 1,
+      explanation: "Mars appears red due to iron oxide (rust) on its surface.",
+    },
+    {
+      id: "3",
+      question: "What is the largest planet in our solar system?",
+      options: ["Neptune", "Saturn", "Jupiter", "Earth"],
+      correctAnswer: 2,
+      explanation: "Jupiter is the largest planet, with a mass greater than all other planets combined.",
+    },
+    {
+      id: "4",
+      question: "How long does it take for light from the Sun to reach Earth?",
+      options: ["1 second", "8 minutes", "1 hour", "24 hours"],
+      correctAnswer: 1,
+      explanation: "Light travels at about 186,000 miles per second and takes approximately 8 minutes to reach Earth.",
+    },
+    {
+      id: "5",
+      question: "What is a black hole?",
+      options: ["A region with no stars", "A collapsed star with intense gravity", "An empty space", "A distant planet"],
+      correctAnswer: 1,
+      explanation: "A black hole is formed when a massive star collapses, creating a region where gravity is so strong that even light cannot escape.",
+    },
+    {
+      id: "6",
+      question: "Which moon is the largest in our solar system?",
+      options: ["Europa", "Titan", "Ganymede", "Moon"],
+      correctAnswer: 2,
+      explanation: "Ganymede, Jupiter's moon, is the largest moon in our solar system and is even larger than Mercury.",
+    },
+    {
+      id: "7",
+      question: "What are the two main gases in the Sun?",
+      options: ["Oxygen and nitrogen", "Hydrogen and helium", "Carbon dioxide and methane", "Helium and neon"],
+      correctAnswer: 1,
+      explanation: "The Sun is primarily composed of hydrogen (about 73%) and helium (about 25%).",
+    },
+    {
+      id: "8",
+      question: "What is a supernova?",
+      options: ["A new star formation", "The explosive death of a star", "A type of planet", "A satellite"],
+      correctAnswer: 1,
+      explanation: "A supernova is the explosive death of a star, often resulting in a neutron star or black hole.",
+    },
+    {
+      id: "9",
+      question: "How many planets are in our solar system?",
+      options: ["7", "8", "9", "10"],
+      correctAnswer: 1,
+      explanation: "There are 8 planets in our solar system: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune.",
+    },
+    {
+      id: "10",
+      question: "What is the name of the closest star to Earth (besides the Sun)?",
+      options: ["Alpha Centauri A", "Proxima Centauri", "Sirius", "Betelgeuse"],
+      correctAnswer: 1,
+      explanation: "Proxima Centauri is the closest star to our solar system, located about 4.24 light-years away.",
+    },
+  ],
+};
+
