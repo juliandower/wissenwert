@@ -18,9 +18,12 @@ export function ScoreWaterfall({ questionPoints, questionLeverages, finalScore }
     return cumulativeScore;
   });
 
-  // Find the range for scaling - normalize to have 0 at bottom
-  const minScore = Math.min(0, ...cumulativeScores);
-  const maxAbs = Math.max(...cumulativeScores.map(Math.abs), Math.abs(finalScore));
+  // Find the range for scaling - ensure we have space above and below 0
+  const allScores = [0, ...cumulativeScores, finalScore];
+  const minScore = Math.min(...allScores);
+  const maxScore = Math.max(...allScores);
+  const range = Math.max(Math.abs(minScore), Math.abs(maxScore));
+  const totalRange = range + range; // Total height from -range to +range
 
   const getLeverageIcon = (leverage: number | null) => {
     if (!leverage) return null;
@@ -48,15 +51,26 @@ export function ScoreWaterfall({ questionPoints, questionLeverages, finalScore }
           {/* Waterfall Chart */}
           <div className="relative h-96 mt-6">
             {/* Zero baseline */}
-            <div className="absolute left-0 right-0 border-t-2 border-gray-600 border-dashed"
-                 style={{ bottom: `${(Math.abs(minScore) / (maxAbs + Math.abs(minScore))) * 100}%` }}>
-              <span className="absolute left-2 text-xs text-gray-500">0</span>
-            </div>
+            <div 
+              className="absolute left-0 right-0 border-t-2 border-gray-600 border-dashed"
+              style={{ bottom: `${(range / totalRange) * 100}%` }}
+            />
+            {/* Zero label - positioned to the left of the chart */}
+            <span 
+              className="absolute text-xs text-gray-500"
+              style={{ 
+                bottom: `${(range / totalRange) * 100}%`,
+                left: '0',
+                transform: 'translateY(-50%)'
+              }}
+            >
+              0
+            </span>
 
             {/* Grid lines */}
             {[...Array(6)].map((_, i) => {
-              const lineValue = minScore + (maxAbs / 5) * (i + 1);
-              const yPos = ((lineValue - minScore) / (maxAbs + Math.abs(minScore))) * 100;
+              const lineValue = -range + (range * 2 / 5) * (i + 1);
+              const yPos = ((lineValue + range) / totalRange) * 100;
               return (
                 <div
                   key={i}
@@ -75,13 +89,13 @@ export function ScoreWaterfall({ questionPoints, questionLeverages, finalScore }
                 const prevCumulative = idx > 0 ? cumulativeScores[idx - 1] : 0;
                 
                 // Calculate positions and heights
-                const zeroY = (Math.abs(minScore) / (maxAbs + Math.abs(minScore))) * 100;
+                const zeroY = (range / totalRange) * 100;
                 
                 // For first bar, start from 0 baseline
                 const startY = idx === 0 
                   ? zeroY 
-                  : ((prevCumulative - minScore) / (maxAbs + Math.abs(minScore))) * 100;
-                const endY = ((cumulative - minScore) / (maxAbs + Math.abs(minScore))) * 100;
+                  : ((prevCumulative + range) / totalRange) * 100;
+                const endY = ((cumulative + range) / totalRange) * 100;
                 const height = Math.abs(endY - startY);
 
                 return (
