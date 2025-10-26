@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useTranslations, useLocale } from 'next-intl';
 import { PromptInput } from "@/components/PromptInput";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { generateQuiz } from "@/lib/mock-ai";
+import { QuizGenerationResult } from "@/lib/types";
 
 export default function Home() {
   const locale = useLocale();
@@ -15,17 +15,20 @@ export default function Home() {
   const [error, setError] = useState("");
   const router = useRouter();
 
-  // Debug
-  console.log('Page - Current locale:', locale);
-  console.log('Page - Title translation:', t('title'));
-  console.log('Page - Subtitle translation:', t('subtitle'));
-
   const handleGenerateQuiz = async (topic: string) => {
     setIsLoading(true);
     setError("");
 
     try {
-      const result = await generateQuiz(topic);
+      const response = await fetch('/api/generate-quiz', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ topic, locale }),
+      });
+
+      const result: QuizGenerationResult = await response.json();
 
       if ("error" in result) {
         setError(result.error);

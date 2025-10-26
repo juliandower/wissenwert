@@ -1,5 +1,6 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
+import { locales } from '@/i18n';
 
 export default async function LocaleLayout({
   children,
@@ -9,15 +10,14 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const messages = await getMessages({ locale });
   
-  // Debug logging
-  console.log('Locale Layout - locale:', locale);
-  console.log('Locale Layout - messages keys:', Object.keys(messages));
-  console.log('Locale Layout - messages.home:', messages.home);
+  // Validate locale
+  const validLocale = (locales as readonly string[]).includes(locale) ? locale : 'en';
+  
+  const messages = await getMessages({ locale: validLocale });
 
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
+    <NextIntlClientProvider locale={validLocale} messages={messages}>
       {children}
     </NextIntlClientProvider>
   );
