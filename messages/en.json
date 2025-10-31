@@ -1,10 +1,10 @@
 {
   "home": {
-    "title": "AI Pointed Quiz",
+    "title": "Wissenswert",
     "subtitle": "Test your knowledge with AI-generated quizzes",
     "placeholder": "Enter a topic...",
     "quizTopic": "Quiz Topic",
-    "topicPlaceholder": "Enter a topic (e.g., 'World History', 'JavaScript Programming', 'Space Exploration')",
+    "topicPlaceholder": "Enter a topic",
     "generateButton": "Generate Quiz",
     "generatingQuiz": "Generating Quiz...",
     "enterTopic": "Please enter a topic",

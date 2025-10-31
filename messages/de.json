@@ -1,10 +1,10 @@
 {
   "home": {
-    "title": "AI Pointed Quiz",
+    "title": "Wissenswert",
     "subtitle": "Testen Sie Ihr Wissen mit KI-generierten Quizzen",
     "placeholder": "Thema eingeben...",
     "quizTopic": "Quiz Thema",
-    "topicPlaceholder": "Geben Sie ein Thema ein (z.B. 'Weltgeschichte', 'JavaScript Programmierung', 'Raumfahrt')",
+    "topicPlaceholder": "Geben Sie ein Thema ein",
     "generateButton": "Quiz erstellen",
     "generatingQuiz": "Quiz wird erstellt...",
     "enterTopic": "Bitte geben Sie ein Thema ein",

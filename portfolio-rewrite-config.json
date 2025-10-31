@@ -1,0 +1,25 @@
+{
+  "description": "Copy this to your portfolio repo's vercel.json or next.config.js",
+  "instructions": "See SETUP_INSTRUCTIONS.md for detailed steps",
+  
+  "for_static_sites": {
+    "file": "vercel.json",
+    "content": {
+      "rewrites": [
+        {
+          "source": "/quiz/:path*",
+          "destination": "https://YOUR-QUIZ-APP.vercel.app/:path*"
+        }
+      ]
+    }
+  },
+  
+  "for_nextjs_sites": {
+    "file": "next.config.js",
+    "example": "async rewrites() {\n  return [\n    {\n      source: '/quiz/:path*',\n      destination: 'https://YOUR-QUIZ-APP.vercel.app/:path*',\n    },\n  ];\n}"
+  }
+}
+
+
+
+

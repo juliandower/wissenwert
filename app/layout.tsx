@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AI Pointed Quiz",
+  title: "Wissenswert",
   description: "Test your knowledge with AI-generated quizzes",
 };
 

@@ -1,6 +1,57 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { QuizGenerationResult } from '@/lib/types';
 
+// Function to perform web search using Tavily API
+async function searchWeb(query: string): Promise<string> {
+  const tavilyApiKey = process.env.TAVILY_API_KEY;
+  
+  if (!tavilyApiKey) {
+    console.warn('Tavily API key not configured. Quiz generation will proceed without web search.');
+    return '';
+  }
+
+  try {
+    const response = await fetch('https://api.tavily.com/search', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        api_key: tavilyApiKey,
+        query: query,
+        search_depth: 'basic',
+        max_results: 5,
+        include_answer: true,
+      }),
+    });
+
+    if (!response.ok) {
+      console.error('Tavily API error:', response.statusText);
+      return '';
+    }
+
+    const data = await response.json();
+    
+    // Format search results for the AI prompt
+    let searchContext = '';
+    if (data.answer) {
+      searchContext += `\n\nWEB SEARCH SUMMARY:\n${data.answer}\n`;
+    }
+    
+    if (data.results && data.results.length > 0) {
+      searchContext += '\nRELEVANT INFORMATION:\n';
+      data.results.forEach((result: any, index: number) => {
+        searchContext += `${index + 1}. ${result.title}\n   ${result.content}\n   Source: ${result.url}\n\n`;
+      });
+    }
+
+    return searchContext;
+  } catch (error) {
+    console.error('Web search error:', error);
+    return '';
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const { topic, locale = 'en' } = await request.json();
@@ -22,6 +73,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Perform web search to get accurate information
+    const searchContext = await searchWeb(topic);
+
     // Call OpenRouter API
     const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
@@ -39,6 +93,7 @@ export async function POST(request: NextRequest) {
             content: locale === 'de' 
               ? `Sie sind ein Quiz-Generator. Generieren Sie genau 10 Multiple-Choice-Fragen auf Deutsch über "${topic}". 
             Jede Frage sollte 4 Optionen (A, B, C, D) haben und eine kurze Erklärung enthalten.
+            ${searchContext ? `\nVERWENDEN SIE DIE FOLGENDEN WEB-SUCHERGEBNISSE FÜR GENAUE FAKTEN:\n${searchContext}\n\nWICHTIG: Verwenden Sie nur Informationen aus den Web-Suchergebnissen, um sicherzustellen, dass alle Fakten korrekt sind.` : ''}
             Geben Sie NUR ein gültiges JSON-Objekt mit dieser Struktur zurück:
             {
               "questions": [
@@ -56,9 +111,11 @@ export async function POST(request: NextRequest) {
             - correctAnswer sollte 0, 1, 2 oder 3 sein (Index der richtigen Option)
             - Machen Sie Fragen vielfältig und decken Sie verschiedene Aspekte des Themas ab
             - Stellen Sie sicher, dass alle Fragen nur zum angegebenen Thema gehören
-            - Alle Fragen, Optionen und Erklärungen müssen auf Deutsch sein`
+            - Alle Fragen, Optionen und Erklärungen müssen auf Deutsch sein
+            - Verwenden Sie nur verifizierte Fakten aus den Web-Suchergebnissen${searchContext ? '' : ' (falls verfügbar)'}`
               : `You are a quiz generator. Generate exactly 10 multiple-choice questions in English about "${topic}". 
             Each question should have 4 options (A, B, C, D) and include a brief explanation.
+            ${searchContext ? `\nUSE THE FOLLOWING WEB SEARCH RESULTS FOR ACCURATE FACTS:\n${searchContext}\n\nIMPORTANT: Use only information from the web search results to ensure all facts are accurate.` : ''}
             Return ONLY a valid JSON object with this exact structure:
             {
               "questions": [
@@ -75,7 +132,8 @@ export async function POST(request: NextRequest) {
             - Return ONLY the JSON, no markdown formatting, no code blocks
             - correctAnswer should be 0, 1, 2, or 3 (index of the correct option)
             - Make questions diverse and covering different aspects of the topic
-            - Ensure all questions are about the specified topic only`
+            - Ensure all questions are about the specified topic only
+            - Use only verified facts from the web search results${searchContext ? '' : ' (if available)'}`
           },
           {
             role: 'user',
